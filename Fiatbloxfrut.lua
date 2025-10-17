@@ -33,7 +33,7 @@ local Tabs = {
     Settings = Window:AddTab({Title="Settings", Icon="settings"})
 }
 
--- NotificaÃ§Ãµes
+-- Notificações
 local function notify(title,content,duration)
     Fluent:Notify({Title=title or "Fiat Hub", Content=content or "", Duration=duration or 4})
 end
@@ -51,19 +51,19 @@ local function setSelectedPlayerByName(name)
     if not name or name=="" then SelectedPlayer=nil; notify("Player","Nenhum player selecionado",3); return end
     local p = Players:FindFirstChild(name)
     if p then SelectedPlayer=p; notify("Player","Selecionado: "..p.Name,3)
-    else SelectedPlayer=nil; notify("Player","Player nÃ£o encontrado: "..tostring(name),3) end
+    else SelectedPlayer=nil; notify("Player","Player não encontrado: "..tostring(name),3) end
 end
 
 -- ToggleTable
 local ToggleTable = {}
 
 -- ===============================
--- ðŸŸ¢ DROPDOWN FAST ATTACK SPEED
+-- 🟢 DROPDOWN FAST ATTACK SPEED
 -- ===============================
 local FastAttackSpeed = 0.8 -- Default
 local FastAttackDropdown = Tabs.Farm:AddDropdown("FastAttackSpeedDropdown",{
     Title="Fast Attack Speed",
-    Values={"0.1âš ï¸","0.3âš ï¸","0.4âš ï¸","0.8âš ï¸","2âœ… recomendo"},
+    Values={"0.1⚠️","0.3⚠️","0.4⚠️","0.8⚠️","2✅ recomendo"},
     Multi=false,
     Default=4
 })
@@ -74,7 +74,7 @@ FastAttackDropdown:OnChanged(function(value)
 end)
 
 -- ===============================
--- ðŸŸ¢ AUTO FARM LOGIC
+-- 🟢 AUTO FARM LOGIC
 -- ===============================
 local AutoFarmActive = false
 local BringMobsActive = false
@@ -86,7 +86,7 @@ local FarmStages = {
 }
 local CurrentStageIndex = 1
 
--- FunÃ§Ã£o util para puxar mobs
+-- Função util para puxar mobs
 local function PullMobs()
     if not BringMobsActive then return end
     local pos = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and LocalPlayer.Character.HumanoidRootPart.Position
@@ -104,7 +104,7 @@ local function PullMobs()
     end
 end
 
--- FunÃ§Ã£o levitar
+-- Função levitar
 local function LevitateAt(position)
     local char = LocalPlayer.Character
     if not char or not char:FindFirstChild("HumanoidRootPart") then return end
@@ -112,7 +112,7 @@ local function LevitateAt(position)
     char.HumanoidRootPart.CFrame = CFrame.new(position)
 end
 
--- FunÃ§Ã£o apertar tecla 1
+-- Função apertar tecla 1
 local function PressKey1Once()
     pcall(function()
         local vim = game:GetService("VirtualInputManager")
@@ -144,10 +144,10 @@ task.spawn(function()
 end)
 
 -- ===============================
--- ðŸŸ¢ TOGGLES FARM
+-- 🟢 TOGGLES FARM
 -- ===============================
 -- Auto Farm
-ToggleTable["AutoFarm"] = Tabs.Farm:AddToggle("AutoFarmToggle",{Title="Auto Farm Level Beta âš ï¸",Default=false})
+ToggleTable["AutoFarm"] = Tabs.Farm:AddToggle("AutoFarmToggle",{Title="Auto Farm Level Beta ⚠️",Default=false})
 ToggleTable["AutoFarm"]:OnChanged(function(value)
     AutoFarmActive = value
     if value then
@@ -158,7 +158,7 @@ ToggleTable["AutoFarm"]:OnChanged(function(value)
 end)
 
 -- Bring Mobs
-ToggleTable["BringMobs"] = Tabs.Farm:AddToggle("BringMobsToggle",{Title="Bring Mob âš ï¸",Default=false})
+ToggleTable["BringMobs"] = Tabs.Farm:AddToggle("BringMobsToggle",{Title="Bring Mob ⚠️",Default=false})
 ToggleTable["BringMobs"]:OnChanged(function(value)
     if not AutoFarmActive and value then
         notify("Bring Mobs","Ative Auto Farm primeiro!",3)
@@ -169,7 +169,7 @@ ToggleTable["BringMobs"]:OnChanged(function(value)
 end)
 
 -- Fast Attack
-ToggleTable["FastAttack"] = Tabs.Farm:AddToggle("FastAttackToggle",{Title="Fast Attack âš ï¸",Default=false})
+ToggleTable["FastAttack"] = Tabs.Farm:AddToggle("FastAttackToggle",{Title="Fast Attack ⚠️",Default=false})
 ToggleTable["FastAttack"]:OnChanged(function(value)
     if value then
         notify("Fast Attack","Ativado!",3)
